@@ -11,8 +11,11 @@ impl<'a> JsPath<'a> for &'a str {
     type Item = &'a str;
     type Iter = StrSliceIter<'a>;
     fn path(self) -> Self::Iter {
-        if self.is_empty() { StrSliceIter::Empty }
-        else { StrSliceIter::NonEmpty(self.split("/")) }
+        if self.is_empty() {
+            StrSliceIter::Empty
+        } else {
+            StrSliceIter::NonEmpty(self.split("/"))
+        }
     }
 }
 
