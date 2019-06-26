@@ -1,4 +1,6 @@
+mod query_for_schema_node;
 mod schema_node;
+mod schema_node_constructors;
 mod schema_node_from;
 
 mod array_node;
@@ -20,3 +22,6 @@ pub use null_node::NullNode;
 pub use number_node::NumberNode;
 pub use object_node::ObjectNode;
 pub use string_node::StringNode;
+
+#[cfg(test)]
+mod query_tests;

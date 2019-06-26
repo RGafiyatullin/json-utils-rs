@@ -6,8 +6,18 @@ use super::SchemaNode;
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct ArrayNode {
-    items: Box<SchemaNode>,
+    pub items: Box<SchemaNode>,
 
     #[serde(flatten)]
-    extra: HashMap<String, JsValue>,
+    pub extra: HashMap<String, JsValue>,
+}
+
+impl ArrayNode {
+    pub fn new<S: Into<SchemaNode>>(items: S) -> Self {
+        let items = Box::new(items.into());
+        Self {
+            items,
+            extra: hashmap! {},
+        }
+    }
 }

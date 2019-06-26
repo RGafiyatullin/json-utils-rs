@@ -36,8 +36,8 @@ pub enum ValidNode {
     ObjectNode(ObjectNode),
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct InvalidNode {
     #[serde(flatten)]
-    fields: HashMap<String, JsValue>,
+    pub fields: HashMap<String, JsValue>,
 }
