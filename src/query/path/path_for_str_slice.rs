@@ -1,13 +1,13 @@
-use super::JsPath;
-use super::JsPathComponent;
+use super::Path;
+use super::PathComponent;
 
-impl<'a> JsPathComponent<'a> for &'a str {
+impl<'a> PathComponent<'a> for &'a str {
     fn as_str_slice(&self) -> &str {
         self
     }
 }
 
-impl<'a> JsPath<'a> for &'a str {
+impl<'a> Path<'a> for &'a str {
     type Item = &'a str;
     type Iter = StrSliceIter<'a>;
     fn path(self) -> Self::Iter {

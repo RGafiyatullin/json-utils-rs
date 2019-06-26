@@ -1,6 +1,6 @@
 mod path;
-mod query;
+mod path_for_str_slice;
+mod path_for_vec_string;
 
 pub use path::Path;
 pub use path::PathComponent;
-pub use query::Query;

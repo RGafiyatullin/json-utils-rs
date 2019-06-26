@@ -1,33 +1,33 @@
 use crate::json::JsValue;
 
-use super::JsPath;
-use super::JsPathComponent;
-use super::JsValueQuery;
+use crate::query::Path;
+use crate::query::PathComponent;
+use crate::query::Query;
 
-impl JsValueQuery for JsValue {
+impl Query for JsValue {
     fn lookup<'v, 'p, P>(&'v self, path: P) -> Option<&'v Self>
     where
-        P: JsPath<'p>,
+        P: Path<'p>,
     {
         lookup(self, path.path())
     }
 
     fn take<'p, P>(self, path: P) -> (Option<Self>, Option<Self>)
     where
-        P: JsPath<'p>,
+        P: Path<'p>,
     {
         take(self, path.path())
     }
 
     fn insert<'p, P>(&mut self, path: P, insertee: Self) -> Option<Self>
     where
-        P: JsPath<'p>,
+        P: Path<'p>,
     {
         insert(self, path.path(), insertee)
     }
 }
 
-fn lookup<'v, 'p, P: JsPathComponent<'p>, I: Iterator<Item = P>>(
+fn lookup<'v, 'p, P: PathComponent<'p>, I: Iterator<Item = P>>(
     v: &'v JsValue,
     mut components: I,
 ) -> Option<&'v JsValue> {
@@ -42,7 +42,7 @@ fn lookup<'v, 'p, P: JsPathComponent<'p>, I: Iterator<Item = P>>(
     }
 }
 
-fn take<'p, P: JsPathComponent<'p>, I: Iterator<Item = P>>(
+fn take<'p, P: PathComponent<'p>, I: Iterator<Item = P>>(
     v: JsValue,
     mut components: I,
 ) -> (Option<JsValue>, Option<JsValue>) {
@@ -67,7 +67,7 @@ fn take<'p, P: JsPathComponent<'p>, I: Iterator<Item = P>>(
     }
 }
 
-fn insert<'p, P: JsPathComponent<'p>, I: Iterator<Item = P>>(
+fn insert<'p, P: PathComponent<'p>, I: Iterator<Item = P>>(
     v: &mut JsValue,
     mut components: I,
     insertee: JsValue,

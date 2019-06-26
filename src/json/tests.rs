@@ -1,5 +1,5 @@
-use super::JsPath;
-use super::JsValueQuery;
+use crate::query::Path;
+use crate::query::Query;
 
 #[test]
 fn empty_string_is_an_empty_path() {
@@ -228,7 +228,6 @@ fn insert_test_02() {
     assert_eq!(object, expected);
 }
 
-
 #[test]
 fn insert_test_03() {
     let original_object = json!({
@@ -245,7 +244,7 @@ fn insert_test_03() {
     let mut object = original_object.clone();
     let original_insertee = json!(null);
     let insertee = original_insertee.clone();
-    
+
     assert_eq!(object.insert("one/zero", insertee), Some(original_insertee));
     assert_eq!(object, original_object);
 }
@@ -265,7 +264,7 @@ fn insert_test_04() {
     });
     let original_insertee = json!(null);
     let insertee = original_insertee.clone();
-    
+
     assert_eq!(object.insert("", insertee), None);
     assert_eq!(object, original_insertee);
 }
