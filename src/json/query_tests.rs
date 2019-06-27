@@ -2,6 +2,28 @@ use crate::query::Path;
 use crate::query::Query;
 
 #[test]
+fn string_ref_as_path() {
+    let object = json!({
+        "one": "one",
+        "two": {
+            "one": "two/one",
+            "two": "two/two",
+            "three": {
+                "one": "two/three/one",
+                "two": ["two/three/one[0]", "two/three/one[1]", "two/three/one[2]"]
+            }
+        },
+    });
+
+    let path: String = "two/three".to_owned();
+
+    assert_eq!(object.lookup(&path), Some(&json!({
+                "one": "two/three/one",
+                "two": ["two/three/one[0]", "two/three/one[1]", "two/three/one[2]"]
+            })));
+}
+
+#[test]
 fn empty_string_is_an_empty_path() {
     assert_eq!("".path().collect::<Vec<&str>>(), Vec::<&str>::new());
 }
