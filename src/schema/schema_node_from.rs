@@ -2,11 +2,7 @@ use super::*;
 
 macro_rules! valid_node_from {
     ($e: ident) => {
-        impl From<$e> for ValidNode {
-            fn from(inner: $e) -> Self {
-                ValidNode::$e(inner)
-            }
-        }
+        enum_variant_from!(ValidNode, $e, $e);
     };
 }
 
