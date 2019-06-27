@@ -1,4 +1,3 @@
-
 use crate::json::JsValue;
 
 use valico::json_schema;
@@ -25,4 +24,3 @@ impl ValidateJsValue for Schema {
         }
     }
 }
-

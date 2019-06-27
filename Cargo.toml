@@ -1,6 +1,6 @@
 [package]
 name = "json-utils"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Roman Gafiyatullin <r.gafiyatullin@me.com>"]
 edition = "2018"
 

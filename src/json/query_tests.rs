@@ -17,10 +17,13 @@ fn string_ref_as_path() {
 
     let path: String = "two/three".to_owned();
 
-    assert_eq!(object.lookup(&path), Some(&json!({
-                "one": "two/three/one",
-                "two": ["two/three/one[0]", "two/three/one[1]", "two/three/one[2]"]
-            })));
+    assert_eq!(
+        object.lookup(&path),
+        Some(&json!({
+            "one": "two/three/one",
+            "two": ["two/three/one[0]", "two/three/one[1]", "two/three/one[2]"]
+        }))
+    );
 }
 
 #[test]

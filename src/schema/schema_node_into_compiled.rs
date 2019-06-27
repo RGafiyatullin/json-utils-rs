@@ -1,5 +1,3 @@
-
-
 use super::SchemaNode;
 
 use serde_json::Error as SerializeError;
@@ -19,7 +17,6 @@ pub enum CompileError {
 enum_variant_from!(CompileError, SerializeError, SerializeError);
 enum_variant_from!(CompileError, SchemaError, SchemaError);
 
-
 impl SchemaNode {
     pub fn into_compiled(self) -> Result<Schema, CompileError> {
         let json = serde_json::to_value(self)?;
@@ -35,4 +32,3 @@ impl SchemaNode {
         Ok(schema)
     }
 }
-

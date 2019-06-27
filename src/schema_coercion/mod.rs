@@ -1,4 +1,3 @@
-
 mod coercion;
 mod coercion_error;
 mod schema_node_impl_coerce;

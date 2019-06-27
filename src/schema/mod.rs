@@ -2,6 +2,7 @@ mod query_for_schema_node;
 mod schema_node;
 mod schema_node_constructors;
 mod schema_node_from;
+mod schema_node_into;
 mod schema_node_into_compiled;
 
 mod validate_js_value;
@@ -28,9 +29,9 @@ pub use number_node::NumberNode;
 pub use object_node::ObjectNode;
 pub use string_node::StringNode;
 
-pub use validate_js_value::ValidationError;
-pub use validate_js_value::ValidateJsValue;
 pub use schema_node_into_compiled::CompileError;
+pub use validate_js_value::ValidateJsValue;
+pub use validate_js_value::ValidationError;
 
 #[cfg(test)]
 mod query_tests;
