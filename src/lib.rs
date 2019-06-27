@@ -13,6 +13,7 @@ mod macros;
 pub mod json;
 pub mod query;
 pub mod schema;
+pub mod schema_coercion;
 
 pub mod prelude {
     pub use crate::json::JsValue;
@@ -22,4 +23,7 @@ pub mod prelude {
     pub use crate::schema::CompileError;
     pub use crate::schema::ValidateJsValue;
     pub use crate::schema::ValidationError;
+
+    pub use crate::schema_coercion::Coercion;
+    pub use crate::schema_coercion::CoercionError;
 }
