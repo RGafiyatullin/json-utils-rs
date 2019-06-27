@@ -7,3 +7,5 @@ pub struct NullNode {
     #[serde(flatten)]
     pub extra: HashMap<String, JsValue>,
 }
+
+impl_extra_props!(NullNode, extra);

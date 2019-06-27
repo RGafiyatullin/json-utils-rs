@@ -41,3 +41,5 @@ pub struct InvalidNode {
     #[serde(flatten)]
     pub fields: HashMap<String, JsValue>,
 }
+
+impl_extra_props!(InvalidNode, fields);

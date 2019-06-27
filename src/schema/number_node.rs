@@ -7,3 +7,5 @@ pub struct NumberNode {
     #[serde(flatten)]
     pub extra: HashMap<String, JsValue>,
 }
+
+impl_extra_props!(NumberNode, extra);

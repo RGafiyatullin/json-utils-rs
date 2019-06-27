@@ -21,3 +21,5 @@ impl ArrayNode {
         }
     }
 }
+
+impl_extra_props!(ArrayNode, extra);

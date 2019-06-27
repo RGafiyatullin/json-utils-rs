@@ -42,3 +42,5 @@ impl ObjectNode {
         self
     }
 }
+
+impl_extra_props!(ObjectNode, extra);
