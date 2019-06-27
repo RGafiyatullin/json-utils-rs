@@ -14,6 +14,8 @@ mod number_node;
 mod object_node;
 mod string_node;
 
+pub use query_for_schema_node::QueryNode;
+
 pub use schema_node::InvalidNode;
 pub use schema_node::SchemaNode;
 pub use schema_node::ValidNode;

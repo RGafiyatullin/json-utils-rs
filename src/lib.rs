@@ -16,10 +16,13 @@ pub mod schema;
 pub mod schema_coercion;
 
 pub mod prelude {
-    pub use crate::json::JsValue;
-    pub use crate::schema::SchemaNode;
     pub use crate::query::Query;
 
+    pub use crate::json::JsValue;
+
+    pub use crate::schema::SchemaNode;
+    pub use crate::schema::QueryNode;
+    
     pub use crate::schema::CompileError;
     pub use crate::schema::ValidateJsValue;
     pub use crate::schema::ValidationError;
