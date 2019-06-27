@@ -19,9 +19,9 @@ pub trait Query<'v>: Sized {
         P: Path<'p>;
 
     /// Inserts an element into the queried node under the specified path.
-    /// Returns None if inserted or Some(rejected_element) if could not perform insertion
+    /// Returns Ok(()) if inserted or Err(rejected_element) if could not perform insertion
     ///     (e.g. path leads to a child of a non-object sub-node).
-    fn insert<'p, P>(&mut self, path: P, insertee: Self::Item) -> Option<Self::Item>
+    fn insert<'p, P>(&mut self, path: P, insertee: Self::Item) -> Result<(), Self::Item>
     where
         P: Path<'p>;
 }

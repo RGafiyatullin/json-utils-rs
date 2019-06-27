@@ -22,7 +22,7 @@ impl<'v> Query<'v> for JsValue {
         take(self, path.path())
     }
 
-    fn insert<'p, P>(&mut self, path: P, insertee: Self::Item) -> Option<Self::Item>
+    fn insert<'p, P>(&mut self, path: P, insertee: Self::Item) -> Result<(), Self::Item>
     where
         P: Path<'p>,
     {
@@ -75,7 +75,7 @@ fn insert<'p, P: PathComponent<'p>, I: Iterator<Item = P>>(
     v: &mut JsValue,
     mut components: I,
     insertee: JsValue,
-) -> Option<JsValue> {
+) -> Result<(), JsValue> {
     if let Some(component) = components.next() {
         match *v {
             JsValue::Object(ref mut fields) => {
@@ -86,17 +86,17 @@ fn insert<'p, P: PathComponent<'p>, I: Iterator<Item = P>>(
                 } else {
                     let mut child = json!({});
 
-                    let rejected_opt = insert(&mut child, components, insertee);
-                    assert!(rejected_opt.is_none());
+                    let () = insert(&mut child, components, insertee)
+                        .expect("Failed to insert into a newly created ObjectNode");
 
                     fields.insert(child_key.to_owned(), child);
-                    None
+                    Ok(())
                 }
             }
-            _ => Some(insertee),
+            _ => Err(insertee),
         }
     } else {
         *v = insertee;
-        None
+        Ok(())
     }
 }

@@ -216,7 +216,7 @@ fn insert_test_01() {
         },
     });
 
-    assert_eq!(object.insert("two/three", insertee), None);
+    assert_eq!(object.insert("two/three", insertee), Ok(()));
 
     assert_eq!(object, expected);
 }
@@ -248,7 +248,7 @@ fn insert_test_02() {
         },
     });
 
-    assert_eq!(object.insert("two/three/three", insertee), None);
+    assert_eq!(object.insert("two/three/three", insertee), Ok(()));
 
     assert_eq!(object, expected);
 }
@@ -270,7 +270,7 @@ fn insert_test_03() {
     let original_insertee = json!(null);
     let insertee = original_insertee.clone();
 
-    assert_eq!(object.insert("one/zero", insertee), Some(original_insertee));
+    assert_eq!(object.insert("one/zero", insertee), Err(original_insertee));
     assert_eq!(object, original_object);
 }
 
@@ -290,6 +290,6 @@ fn insert_test_04() {
     let original_insertee = json!(null);
     let insertee = original_insertee.clone();
 
-    assert_eq!(object.insert("", insertee), None);
+    assert_eq!(object.insert("", insertee), Ok(()));
     assert_eq!(object, original_insertee);
 }
