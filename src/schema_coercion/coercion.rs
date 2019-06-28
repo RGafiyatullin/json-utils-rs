@@ -34,6 +34,16 @@ impl Coercion {
             Coercion::Object(prop_coercions) => object_coercion(prop_coercions, value),
         }
     }
+
+    pub fn is_subtyping_only(&self) -> bool {
+        match *self {
+            Coercion::Identity => true,
+            Coercion::NumberToString => false,
+            Coercion::ReplaceWithLiteral(_) => false,
+            Coercion::Array(ref items) => items.is_subtyping_only(),
+            Coercion::Object(ref props) => props.iter().all(|(_, prop)| prop.is_subtyping_only()),
+        }
+    }
 }
 
 fn number_to_string(coercion: Coercion, value: JsValue) -> CoercionResult {
