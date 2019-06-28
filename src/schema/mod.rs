@@ -4,6 +4,7 @@ mod extra_props;
 mod query_for_schema_node;
 mod schema_node;
 mod schema_node_constructors;
+mod schema_node_for_literal;
 mod schema_node_from;
 mod schema_node_into;
 mod schema_node_into_compiled;
@@ -11,6 +12,7 @@ mod schema_node_into_compiled;
 mod schema_description;
 mod validate_js_value;
 
+mod any_node;
 mod array_node;
 mod boolean_node;
 mod integer_node;
@@ -28,6 +30,7 @@ pub use schema_node::InvalidNode;
 pub use schema_node::SchemaNode;
 pub use schema_node::ValidNode;
 
+pub use any_node::AnyNode;
 pub use array_node::ArrayNode;
 pub use boolean_node::BooleanNode;
 pub use integer_node::IntegerNode;

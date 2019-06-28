@@ -14,6 +14,9 @@ pub enum SchemaNode {
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "type")]
 pub enum ValidNode {
+    #[serde(rename = "any")]
+    AnyNode(AnyNode),
+
     #[serde(rename = "null")]
     NullNode(NullNode),
 

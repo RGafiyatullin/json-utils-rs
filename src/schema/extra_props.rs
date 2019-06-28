@@ -1,4 +1,3 @@
-
 use std::collections::HashMap;
 
 use crate::json::JsValue;
@@ -23,7 +22,7 @@ macro_rules! impl_extra_props {
             fn with_extra_props(self, extra_props: HashMap<String, JsValue>) -> Self {
                 Self {
                     $field: extra_props,
-                    .. self
+                    ..self
                 }
             }
         }

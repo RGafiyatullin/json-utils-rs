@@ -22,6 +22,7 @@ impl From<ValidNode> for SchemaNode {
     }
 }
 
+valid_node_from!(AnyNode);
 valid_node_from!(NullNode);
 valid_node_from!(BooleanNode);
 valid_node_from!(StringNode);
@@ -30,6 +31,7 @@ valid_node_from!(NumberNode);
 valid_node_from!(ArrayNode);
 valid_node_from!(ObjectNode);
 
+schema_node_via_valid_node_from!(AnyNode);
 schema_node_via_valid_node_from!(NullNode);
 schema_node_via_valid_node_from!(BooleanNode);
 schema_node_via_valid_node_from!(StringNode);

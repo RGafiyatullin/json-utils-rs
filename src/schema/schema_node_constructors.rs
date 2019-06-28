@@ -1,6 +1,9 @@
 use super::*;
 
 impl SchemaNode {
+    pub fn any() -> AnyNode {
+        AnyNode::default()
+    }
     pub fn null() -> NullNode {
         NullNode::default()
     }
