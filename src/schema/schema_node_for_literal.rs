@@ -10,7 +10,14 @@ impl SchemaNode {
             JsValue::Number(_) => SchemaNode::number().into(),
             JsValue::String(_) => SchemaNode::string().into(),
             JsValue::Array(_) => SchemaNode::array(SchemaNode::any()).into(),
-            JsValue::Object(_) => SchemaNode::object().into(),
+            JsValue::Object(ref props) => {
+                props.into_iter().fold(
+                    SchemaNode::object(),
+                    |acc, (key, value)| {
+                        acc.add_property(key, Self::for_literal(value)).add_required(key)
+                    }
+                ).into()
+            },
         }
     }
 }
