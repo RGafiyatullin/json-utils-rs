@@ -81,16 +81,7 @@ fn coerce_into_object_node(source: &ValidNode, object_node: &ObjectNode) -> Coer
                 }
             }
 
-            let no_source_props_left_unused = source_prop_names.is_empty();
-            let only_identity_coercions_for_props = prop_coercions
-                .iter()
-                .all(|(_, ref c)| *c == Coercion::Identity);
-
-            if no_source_props_left_unused && only_identity_coercions_for_props {
-                ok_identity()
-            } else {
-                ok_object(prop_coercions)
-            }
+            ok_object(prop_coercions)
         }
 
         ref source => err_incompatible(source, object_node),
@@ -229,28 +220,6 @@ fn array_coercions() {
 
         eprintln!("trying {:?} into {:?}", source, target);
         assert_eq!(source.coerce(&target).ok(), coercion_opt);
-    }
-}
-
-#[test]
-fn object_identity_coercion() {
-    let inputs: Vec<SchemaNode> = vec![
-        SchemaNode::object().into(),
-        SchemaNode::object()
-            .add_property("an_int", SchemaNode::integer())
-            .into(),
-        basic_inputs()
-            .into_iter()
-            .enumerate()
-            .fold(SchemaNode::object(), |acc, (idx, (p, _, _))| {
-                let prop_name = format!("prop_{}", idx);
-                acc.add_property(&prop_name, p).add_required(&prop_name)
-            })
-            .into(),
-    ];
-
-    for schema in inputs {
-        assert_eq!(schema.coerce(&schema).ok(), Some(Coercion::Identity));
     }
 }
 
