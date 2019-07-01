@@ -80,8 +80,12 @@ fn coerce_into_object_node(source: &ValidNode, object_node: &ObjectNode) -> Coer
                     source_prop_names.remove(target_prop_name);
                 }
             }
-
-            ok_object(prop_coercions)
+            
+            if prop_coercions.is_empty() {
+                ok_identity()
+            } else {
+                ok_object(prop_coercions)
+            }
         }
 
         ref source => err_incompatible(source, object_node),
@@ -187,6 +191,47 @@ where
         source: source.clone().into(),
         target: target.clone().into(),
     })
+}
+
+#[test]
+fn an_object_with_properties_coercion_omits_unmentioned_fields() {
+    let source_schema: SchemaNode = SchemaNode::object()
+        .add_property("a-field", SchemaNode::string())
+        .add_property("wont-be-seen", SchemaNode::string())
+        .into();
+    let target_schema: SchemaNode = SchemaNode::object().add_property("a-field", SchemaNode::string()).into();
+    let coercion = source_schema.coerce(&target_schema).expect("coercion creation failure");
+
+    let input = json!({
+        "a-field": "a-value",
+        "wont-be-seen": "in this field icouldpleasureahorse (c)JClarkson",
+    });
+    let expected_output = json!({
+        "a-field": "a-value",
+    });
+
+    let actual_output = coercion.coerce(input).expect("coercion application failure");
+    
+    assert_eq!(actual_output, expected_output);
+}
+
+#[test]
+fn an_object_with_no_properties_coercion_keeps_all_the_fields() {
+    let source_schema: SchemaNode = SchemaNode::object().into();
+    let target_schema: SchemaNode = SchemaNode::object()
+        .add_property("a-field", SchemaNode::string())
+        .add_property("will-be-seen", SchemaNode::string())
+        .into();
+    let coercion = source_schema.coerce(&target_schema).expect("coercion creation failure");
+
+    let input = json!({
+        "a-field": "a-value",
+        "will-be-seen": "ahem",
+    });
+    let expected_output = input.clone();
+    let actual_output = coercion.coerce(input).expect("coercion application failure");
+    
+    assert_eq!(actual_output, expected_output);
 }
 
 #[test]
