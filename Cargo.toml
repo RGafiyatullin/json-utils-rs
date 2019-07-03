@@ -3,6 +3,8 @@ name = "json-utils"
 version = "0.2.7"
 authors = ["Roman Gafiyatullin <r.gafiyatullin@me.com>"]
 edition = "2018"
+description = "An utility crate for working with JSON and JSON-schemas"
+license = "MIT"
 
 [dependencies]
 failure = "^0.1"
