@@ -79,7 +79,11 @@ fn take<'v, 'p, P: PathComponent<'p>, I: Iterator<Item = P>>(
                     if let Some(child) = child_opt {
                         object_node.properties.insert(child_key.to_owned(), child);
                     };
-                    (Some(object_node.into()), taken_opt)
+                    if object_node.properties.is_empty() {
+                        (None, taken_opt)
+                    } else {
+                        (Some(object_node.into()), taken_opt)
+                    }
                 } else {
                     (Some(object_node.into()), None)
                 }
