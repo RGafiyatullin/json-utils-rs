@@ -21,6 +21,8 @@ mod number_node;
 mod object_node;
 mod string_node;
 
+mod union_node;
+
 pub use extra_props::ExtraProps;
 pub use schema_description::SchemaDescription;
 
@@ -38,6 +40,8 @@ pub use null_node::NullNode;
 pub use number_node::NumberNode;
 pub use object_node::ObjectNode;
 pub use string_node::StringNode;
+
+pub use union_node::UnionNode;
 
 pub use schema_node_into_compiled::CompileError;
 pub use validate_js_value::ValidateJsValue;

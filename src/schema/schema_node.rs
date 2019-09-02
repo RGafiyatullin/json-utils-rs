@@ -8,6 +8,7 @@ use super::*;
 #[serde(untagged)]
 pub enum SchemaNode {
     ValidNode(ValidNode),
+    UnionNode(UnionNode),
     InvalidNode(InvalidNode),
 }
 

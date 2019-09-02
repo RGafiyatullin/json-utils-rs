@@ -80,7 +80,7 @@ fn coerce_into_object_node(source: &ValidNode, object_node: &ObjectNode) -> Coer
                     source_prop_names.remove(target_prop_name);
                 }
             }
-            
+
             if prop_coercions.is_empty() {
                 ok_identity()
             } else {
@@ -199,8 +199,12 @@ fn an_object_with_properties_coercion_omits_unmentioned_fields() {
         .add_property("a-field", SchemaNode::string())
         .add_property("wont-be-seen", SchemaNode::string())
         .into();
-    let target_schema: SchemaNode = SchemaNode::object().add_property("a-field", SchemaNode::string()).into();
-    let coercion = source_schema.coerce(&target_schema).expect("coercion creation failure");
+    let target_schema: SchemaNode = SchemaNode::object()
+        .add_property("a-field", SchemaNode::string())
+        .into();
+    let coercion = source_schema
+        .coerce(&target_schema)
+        .expect("coercion creation failure");
 
     let input = json!({
         "a-field": "a-value",
@@ -210,8 +214,10 @@ fn an_object_with_properties_coercion_omits_unmentioned_fields() {
         "a-field": "a-value",
     });
 
-    let actual_output = coercion.coerce(input).expect("coercion application failure");
-    
+    let actual_output = coercion
+        .coerce(input)
+        .expect("coercion application failure");
+
     assert_eq!(actual_output, expected_output);
 }
 
@@ -222,15 +228,19 @@ fn an_object_with_no_properties_coercion_keeps_all_the_fields() {
         .add_property("a-field", SchemaNode::string())
         .add_property("will-be-seen", SchemaNode::string())
         .into();
-    let coercion = source_schema.coerce(&target_schema).expect("coercion creation failure");
+    let coercion = source_schema
+        .coerce(&target_schema)
+        .expect("coercion creation failure");
 
     let input = json!({
         "a-field": "a-value",
         "will-be-seen": "ahem",
     });
     let expected_output = input.clone();
-    let actual_output = coercion.coerce(input).expect("coercion application failure");
-    
+    let actual_output = coercion
+        .coerce(input)
+        .expect("coercion application failure");
+
     assert_eq!(actual_output, expected_output);
 }
 

@@ -56,7 +56,7 @@ fn take<'p, P: PathComponent<'p>, I: Iterator<Item = P>>(
                 let child_key = component.as_str_slice();
                 if let Some(child) = fields.remove(child_key) {
                     let (child_opt, taken_opt) = take(child, components);
-                    
+
                     if let Some(child) = child_opt {
                         fields.insert(child_key.to_owned(), child);
                     };
