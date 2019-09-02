@@ -5,6 +5,7 @@ authors = ["Roman Gafiyatullin <r.gafiyatullin@me.com>"]
 edition = "2018"
 description = "An utility crate for working with JSON and JSON-schemas"
 license = "MIT"
+repository = "https://github.com/RGafiyatullin/json-utils-rs"
 
 [dependencies]
 failure = "^0.1"
