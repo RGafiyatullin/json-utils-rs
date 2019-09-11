@@ -1,0 +1,23 @@
+{
+    "schema": {
+        "type": "object",
+        "properties": {
+            "one": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1
+            }
+        },
+        "required": [
+            "one"
+        ]
+    },
+    "values": [
+        1,
+        null,
+        {},
+        {"one": 1},
+        {"one": null},
+        {"one": "string"}
+    ]
+}
