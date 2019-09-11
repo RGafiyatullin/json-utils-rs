@@ -8,9 +8,9 @@ mod schema_node_for_literal;
 mod schema_node_from;
 mod schema_node_into;
 mod schema_node_into_compiled;
+mod schema_compiled;
 
 mod schema_description;
-mod validate_js_value;
 
 mod any_node;
 mod array_node;
@@ -30,6 +30,9 @@ pub use schema_node::InvalidNode;
 pub use schema_node::SchemaNode;
 pub use schema_node::ValidNode;
 
+pub use schema_compiled::SchemaCompiled;
+pub use schema_compiled::ValidationError;
+
 pub use any_node::AnyNode;
 pub use array_node::ArrayNode;
 pub use boolean_node::BooleanNode;
@@ -40,8 +43,7 @@ pub use object_node::ObjectNode;
 pub use string_node::StringNode;
 
 pub use schema_node_into_compiled::CompileError;
-pub use validate_js_value::ValidateJsValue;
-pub use validate_js_value::ValidationError;
+
 
 #[cfg(test)]
 mod query_tests;

@@ -1,6 +1,6 @@
 [package]
 name = "json-utils"
-version = "0.2.8"
+version = "0.3.0"
 authors = ["Roman Gafiyatullin <r.gafiyatullin@me.com>"]
 edition = "2018"
 description = "An utility crate for working with JSON and JSON-schemas"
@@ -11,7 +11,9 @@ repository = "https://github.com/RGafiyatullin/json-utils-rs"
 failure = "^0.1"
 serde_json = "^1.0"
 maplit = "^1.0"
-valico = "^3.0"
+valico = "^3.1"
+lazy_static = "^1.4"
+url = "1"
 
 [dependencies.serde]
 version = "^1.0"

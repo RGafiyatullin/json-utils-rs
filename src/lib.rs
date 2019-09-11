@@ -6,6 +6,8 @@ extern crate serde;
 extern crate maplit;
 #[macro_use]
 extern crate failure;
+#[macro_use]
+extern crate lazy_static;
 
 #[macro_use]
 mod macros;
@@ -22,12 +24,12 @@ pub mod prelude {
 
     pub use crate::schema::QueryNode;
     pub use crate::schema::SchemaNode;
+    pub use crate::schema::SchemaCompiled;
 
     pub use crate::schema::ExtraProps;
     pub use crate::schema::SchemaDescription;
 
     pub use crate::schema::CompileError;
-    pub use crate::schema::ValidateJsValue;
     pub use crate::schema::ValidationError;
 
     pub use crate::schema_coercion::Coercion;
