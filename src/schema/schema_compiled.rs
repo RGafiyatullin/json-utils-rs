@@ -14,6 +14,7 @@ use crate::json::JsValue;
 #[fail(display = "ValidationError: {:?}", _0)]
 pub struct ValidationError(pub JsValue);
 
+#[derive(Debug)]
 pub struct SchemaCompiled(pub Scope);
 
 impl SchemaCompiled {
