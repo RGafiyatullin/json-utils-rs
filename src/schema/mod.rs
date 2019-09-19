@@ -2,13 +2,13 @@
 mod extra_props;
 
 mod query_for_schema_node;
+mod schema_compiled;
 mod schema_node;
 mod schema_node_constructors;
 mod schema_node_for_literal;
 mod schema_node_from;
 mod schema_node_into;
 mod schema_node_into_compiled;
-mod schema_compiled;
 
 mod schema_description;
 
@@ -44,6 +44,8 @@ pub use string_node::StringNode;
 
 pub use schema_node_into_compiled::CompileError;
 
-
 #[cfg(test)]
 mod query_tests;
+
+#[cfg(test)]
+mod schema_node_test;

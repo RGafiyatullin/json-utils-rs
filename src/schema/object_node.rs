@@ -9,7 +9,7 @@ use super::SchemaNode;
 pub struct ObjectNode {
     pub properties: HashMap<String, SchemaNode>,
 
-    #[serde(skip_serializing_if = "HashSet::is_empty")]
+    #[serde(default = "HashSet::new", skip_serializing_if = "HashSet::is_empty")]
     pub required: HashSet<String>,
 
     #[serde(skip_serializing_if = "HashMap::is_empty")]
