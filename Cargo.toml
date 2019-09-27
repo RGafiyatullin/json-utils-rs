@@ -1,6 +1,6 @@
 [package]
 name = "json-utils"
-version = "0.3.2"
+version = "0.3.3"
 authors = ["Roman Gafiyatullin <r.gafiyatullin@me.com>"]
 edition = "2018"
 description = "An utility crate for working with JSON and JSON-schemas"

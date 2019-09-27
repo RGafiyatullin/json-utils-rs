@@ -7,7 +7,12 @@ impl SchemaNode {
         match *literal_value {
             JsValue::Null => SchemaNode::null().into(),
             JsValue::Bool(_) => SchemaNode::boolean().into(),
-            JsValue::Number(_) => SchemaNode::number().into(),
+            JsValue::Number(ref value) => 
+                if value.is_i64() {
+                    SchemaNode::integer().into()
+                } else {
+                    SchemaNode::number().into()
+                },
             JsValue::String(_) => SchemaNode::string().into(),
             JsValue::Array(_) => SchemaNode::array(SchemaNode::any()).into(),
             JsValue::Object(ref props) => {
